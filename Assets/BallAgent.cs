@@ -97,11 +97,14 @@ public class BallAgent : Agent
     }
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(lookRotation.x);
-        sensor.AddObservation(lookRotation.y);
+        //sensor.AddObservation(lookRotation.x);
+        //sensor.AddObservation(lookRotation.y);
         sensor.AddObservation(distanceToTarget);
         sensor.AddObservation(rigidbody.velocity);
+        sensor.AddObservation(earth.position.y - target.position.y);
+        sensor.AddObservation(earth.position.y - transform.position.y);
         sensor.AddObservation(Quaternion.LookRotation(target.forward, target.up));
+        sensor.AddObservation(Quaternion.LookRotation(transform.forward, transform.up));
     }
     public override void OnActionReceived(float[] vectorAction)
     {
